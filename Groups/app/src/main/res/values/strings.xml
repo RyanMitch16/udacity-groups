@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Groups</string>
+
+    <string name="sync_account_type">groups.codeu.com</string>
+    <string name="content_authority">com.codeu.teamjacob.groups</string>
+
+    <string name="drawer_close">Close</string>
+    <string name="drawer_open">Open</string>
+    <string name="sign_up_page">Sign Up!</string>
+
+</resources>

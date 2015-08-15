@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_select_all_items"
+        android:title="Select All"
+        android:orderInCategory="98"
+        android:checkable="true"
+        app:showAsAction="always"
+        android:icon="@mipmap/ic_action_select_all_holo_dark"/>
+
+    <item android:id="@+id/action_trash_items"
+        android:title="Trash"
+        android:orderInCategory="99"
+        android:checkable="true"
+        app:showAsAction="always"
+        android:icon="@mipmap/ic_action_discard_holo_dark"/>
+
+    <item android:id="@+id/action_edit_mode"
+        android:title="Edit Mode"
+        android:orderInCategory="100"
+        android:checkable="true"
+        app:showAsAction="always"
+        android:icon="@mipmap/ic_action_edit_holo_dark"/>
+
+</menu>

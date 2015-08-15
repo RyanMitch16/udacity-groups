@@ -1,0 +1,158 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.codeu.teamjacob.groups">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.READ_SYNC_STATS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+
+    <application android:allowBackup="true"
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:theme="@style/AppTheme">
+
+        <!--The main activity of the app-->
+        <activity
+            android:name=".ui.groups.GroupsActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.login.LoginActivity">
+        </activity>
+
+        <activity
+            android:name=".ui.login.SignUpActivity"
+            android:parentActivityName=".ui.login.LoginActivity"
+            android:label="@string/sign_up_page">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.login.LoginActivity" />
+        </activity>
+
+        <activity android:name=".ui.lists.ListsActivity"
+            android:parentActivityName=".ui.groups.GroupsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.groups.GroupsActivity" />
+        </activity>
+
+        <activity android:name=".ui.items.ItemsActivity"
+            android:parentActivityName=".ui.lists.ListsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.lists.ListsActivity" />
+        </activity>
+
+        <!--The content provider of the app-->
+        <provider
+            android:name=".database.base.DatabaseContentProvider"
+            android:authorities="com.codeu.teamjacob.groups"
+            android:label="Groups"
+            android:exported="false"
+            android:syncable="true"/>
+
+        <!-- SyncAdapter's dummy authentication service -->
+        <service android:name=".sync.GroupsAuthenticatorSync">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+
+        <!-- The SyncAdapter service -->
+        <service
+            android:name=".sync.GroupsSyncService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter" />
+        </service>
+
+        <service android:name=".sync.GroupsPeriodicSyncService"
+            android:exported="false">
+        </service>
+
+        <activity android:name=".ui.groups.CreateGroupPopup"
+            android:parentActivityName=".ui.groups.GroupsActivity"
+            android:theme="@style/AppTheme.Popup.Dim">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.groups.GroupsActivity" />
+        </activity>
+
+        <activity android:name=".ui.groups.EditGroupPopup"
+            android:parentActivityName=".ui.groups.GroupsActivity"
+            android:theme="@style/AppTheme.Popup.Dim">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.groups.GroupsActivity" />
+        </activity>
+
+        <activity android:name=".ui.groups.GroupRenamePopup"
+            android:parentActivityName=".ui.groups.GroupsActivity"
+            android:theme="@style/AppTheme.Popup.Dim">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.groups.GroupsActivity" />
+        </activity>
+
+        <activity android:name=".ui.lists.CreateListPopup"
+            android:parentActivityName=".ui.lists.ListsActivity"
+            android:theme="@style/AppTheme.Popup.Dim">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.lists.ListsActivity" />
+        </activity>
+
+        <activity android:name=".ui.lists.EditListPopup"
+            android:parentActivityName=".ui.lists.ListsActivity"
+            android:theme="@style/AppTheme.Popup.Dim">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.lists.ListsActivity" />
+        </activity>
+
+        <activity android:name=".ui.lists.ListRenamePopup"
+            android:parentActivityName=".ui.lists.ListsActivity"
+            android:theme="@style/AppTheme.Popup.Dim">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.lists.ListsActivity" />
+        </activity>
+
+        <activity android:name=".ui.items.CreateItemPopup"
+            android:parentActivityName=".ui.items.ItemsActivity"
+            android:theme="@style/AppTheme.Popup.Dim">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.items.ItemsActivity" />
+        </activity>
+
+        <activity android:name=".ui.groups.AddGroupUserPopup"
+            android:parentActivityName=".ui.groups.GroupsActivity"
+            android:theme="@style/AppTheme.Popup.Dim"
+            android:windowSoftInputMode="adjustPan">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.groups.GroupsActivity" />
+        </activity>
+
+    </application>
+
+</manifest>
